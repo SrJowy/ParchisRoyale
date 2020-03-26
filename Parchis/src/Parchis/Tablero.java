@@ -37,6 +37,7 @@ public class Tablero {
 			Jugador pJugador = this.listaJ.elegirJugador(i);
 			int aux = i+1;
 			System.out.println("Es tu turno jugador " + aux + ", " + pJugador.getColor());
+			System.out.println("                                                       ");
 			int res = Dado.getDado().lanzarDado();
 			Ficha pFicha = pJugador.elegirFicha(res, this.listaC);
 			if (pFicha != null) {
