@@ -10,7 +10,7 @@ public class Casilla {
 		this.numCasilla = pNumCas;
 		this.tipo = pTipo;
 	}
-	//Prueba3
+	//Prueba4
 	public void setTipo(String pTipo) {
 		this.tipo = pTipo;
 	}
