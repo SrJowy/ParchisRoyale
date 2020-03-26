@@ -30,9 +30,9 @@ public class Casilla {
 			this.hueco2 = pFicha; 
 		}
 		
-		//*if (esta(pFicha)) {
+		/*if (esta(pFicha)) {
 			//System.out.println(true);
-		//}*/
+		}*/
 	}
 	
 	public boolean esta (Ficha pFicha) {
