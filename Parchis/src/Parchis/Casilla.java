@@ -23,7 +23,7 @@ public class Casilla {
 		return this.tipo;
 	}
 	
-	public void sacarFicha(Ficha pFicha) {//Caso de la casilla esta llena
+	public void sacarFicha(Ficha pFicha) {//FALTA: Caso de la casilla esta llena
 		if (this.estaOcupada()) {
 			if (this.tipo == "Normal"){
 				if (this.hueco1 != null && this.hueco1.colorDiferente(pFicha)) {
