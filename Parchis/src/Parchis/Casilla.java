@@ -23,11 +23,39 @@ public class Casilla {
 		return this.tipo;
 	}
 	
-	public void sacarFicha(Ficha pFicha) { 
-		if (this.hueco1 == null ) {
-			this.hueco1 = pFicha;
+	public void sacarFicha(Ficha pFicha) {//Caso de la casilla esta llena
+		if (this.estaOcupada()) {
+			if (this.tipo == "Normal"){
+				if (this.hueco1 != null && this.hueco1.colorDiferente(pFicha)) {
+					this.hueco2 = pFicha;
+					this.hueco1.setBase(0);
+					System.out.println("Has comido la ficha de color " + this.hueco1.getColor());
+					this.eliminarFicha(hueco1);
+				} else if (this.hueco2 != null && this.hueco2.colorDiferente(pFicha)) {
+					this.hueco1 = pFicha;
+					this.hueco2.setBase(0);
+					System.out.println("Has comido la ficha de color " + this.hueco1.getColor());
+					this.eliminarFicha(hueco2);		
+				/*} else {
+					if (this.hueco1 == null) {
+						this.hueco1 = pFicha;
+					} else {
+						this.hueco2 = pFicha;
+					}*/
+				}
+			/*} else {
+				if (this.hueco1 == null) {
+					this.hueco1 = pFicha;
+				} else {
+					this.hueco2 = pFicha;
+				}*/
+			}
 		} else {
-			this.hueco2 = pFicha; 
+			if (this.hueco1 == null) {
+				this.hueco1 = pFicha;
+			} else {
+				this.hueco2 = pFicha; 
+			}
 		}
 		
 		/*if (esta(pFicha)) {
@@ -48,5 +76,12 @@ public class Casilla {
 		} else {
 			hueco2 = null;
 		}
+	}
+	
+	public boolean estaOcupada() {
+		if (this.hueco1 != null || this.hueco2 != null) {
+			return true;
+		}
+		return false;
 	}
 }

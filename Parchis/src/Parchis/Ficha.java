@@ -14,6 +14,14 @@ public class Ficha {
 		return this.base;
 	}
 	
+	public void setBase(int pNum) {
+		this.base = pNum;
+	}
+	
+	public String getColor() {
+		return this.color;
+	}
+	
 	public int getCasilla(ListaCasillas lC) {
 		Casilla c = lC.buscarCasilla(this);
 		return c.getNumCasilla();
@@ -64,4 +72,12 @@ public class Ficha {
 			lC.sacarFicha(this, 56);
 		}
 	}
+	
+	public boolean colorDiferente(Ficha pFicha) {
+		if (this.color!=pFicha.color) {
+			return true;
+		}
+		return false;
+	}
+	
 }
