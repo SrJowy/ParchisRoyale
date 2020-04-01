@@ -28,9 +28,16 @@ public class ListaCasillasTest {
 		l1.moverFicha(6, f);
 		assertEquals(4, l1.buscarCasilla(f).getNumCasilla());*/
 		
-		l1.sacarFicha(f, 13);
-		l1.sacarFicha(f2,14);
+		l1.sacarFicha(f, 16);
+		//l1.sacarFicha(f2,14);
+		assertEquals(16,l1.buscarCasilla(f).getNumCasilla());
 		l1.moverFicha(2, f);
+		assertEquals(69, l1.buscarCasilla(f).getNumCasilla());
+		/*l1.moverFicha(3, f);
+		assertEquals(71, l1.buscarCasilla(f).getNumCasilla());
+		/*l1.sacarFicha(f, 68);
+		l1.moverFicha(1, f);
+		assertEquals(1, l1.buscarCasilla(f).getNumCasilla());*/
 	}
 
 }

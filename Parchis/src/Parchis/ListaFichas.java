@@ -43,7 +43,7 @@ public class ListaFichas {
 		Iterator <Ficha> itr = this.getIterador();
 		while (itr.hasNext() && estan) {
 			unaFicha = itr.next();
-			if (unaFicha.getBase() != 0) {
+			if (!unaFicha.getBase()) {
 				estan = false;
 			}
 		}
@@ -56,7 +56,7 @@ public class ListaFichas {
 		Iterator <Ficha> itr = this.getIterador();
 		while (itr.hasNext() && !hay) {
 			unaFicha = itr.next();
-			if (unaFicha.getBase() == 0) {
+			if (unaFicha.getBase()) {
 				hay = true;
 			}
 		}

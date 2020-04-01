@@ -3,19 +3,31 @@ import java.util.*;
 
 public class Ficha {
 	private String color;
-	private int base;
+	private boolean base;
+	private boolean pasillo;
+	private boolean meta;
 	
 	public Ficha(String pColor) {
 		this.color = pColor;
-		this.base = 0;
+		this.base = true;
+		this.pasillo = false;
+		this.meta = false;
 	}
 	
-	public int getBase() {
+	public void setPasillo(boolean b) {
+		this.pasillo = b;
+	}
+	
+	public boolean getPasillo() {
+		return this.pasillo;
+	}
+	
+	public boolean getBase() {
 		return this.base;
 	}
 	
-	public void setBase(int pNum) {
-		this.base = pNum;
+	public void setBase(boolean b) {
+		this.base = b;
 	}
 	
 	public String getColor() {
@@ -30,7 +42,7 @@ public class Ficha {
 	public void esta(int i, ListaCasillas lC) { //arreglar esto para que no haga falta el atributo casilla
 		
 		i = i+1;
-		if (this.base == 0) {
+		if (this.base == true) {
 			System.out.println("La ficha numero " + i + " esta en la base");
 		} else {
 			Casilla pCas = lC.buscarCasilla(this);
@@ -39,19 +51,19 @@ public class Ficha {
 	}
 	
 	public void moverFicha(int pNum, ListaCasillas lC, ListaFichas lF) { //sacar ficha esta hecho (faltan casos criticos)
-		System.out.println("xdddddd");
+		//System.out.println("xdddddd");
 		if (lF.hayAlgunaEnCasa(lC)) {
-			if (this.base == 0) {
+			if (this.base == true) {
 				if (pNum == 5) {
 					this.sacarFicha(lC);
 					System.out.println("                                                                           ");
 					System.out.println("Ahora tu ficha esta en la casilla " + lC.buscarCasilla(this).getNumCasilla());
-					this.base = -1;
+					this.base = false;
 				} else {
 					System.out.println("Esa ficha no se puede elegir, elige otra.");
 					lF.elegirFicha(-1).moverFicha(pNum, lC, lF);
 				}
-			} else if (this.base == -1 && pNum == 5) {
+			} else if (this.base == false && pNum == 5) {
 				System.out.println("Esa ficha no se puede elegir, elige otra.");
 				lF.elegirFicha(-1).moverFicha(pNum, lC, lF);
 			} else {
