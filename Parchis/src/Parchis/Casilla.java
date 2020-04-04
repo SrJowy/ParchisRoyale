@@ -36,12 +36,12 @@ public class Casilla {
 					this.hueco2.setBase(true);
 					System.out.println("Has comido la ficha de color " + this.hueco1.getColor());
 					this.eliminarFicha(hueco2);		
-				/*} else {
+				} else {
 					if (this.hueco1 == null) {
 						this.hueco1 = pFicha;
 					} else {
 						this.hueco2 = pFicha;
-					}*/
+					}
 				}
 			} else {
 				if (this.hueco1 == null) {
@@ -80,6 +80,13 @@ public class Casilla {
 	
 	public boolean estaOcupada() {
 		if (this.hueco1 != null || this.hueco2 != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean estaLlena() {
+		if (this.hueco1 != null && this.hueco2 != null) {
 			return true;
 		}
 		return false;

@@ -3,15 +3,11 @@ import java.util.*;
 
 public class ListaCasillas {
 	private ArrayList <Casilla> listaC;
-	/*private ArrayList <Casilla> pasilloR;
-	private ArrayList <Casilla> pasilloA;
-	private ArrayList <Casilla> pasilloZ;
-	private ArrayList <Casilla> pasilloV;*/
 	
 	public ListaCasillas() {
 		this.listaC = new ArrayList <Casilla>();
 		
-		for (int i = 0; i < 100; i++) { //Las casillas i son una más para que cuadre
+		for (int i = 0; i < 101; i++) { //Las casillas i son una más para que cuadre
 
 			if (i == 4 || i == 21 || i == 38 || i == 55) {
 				Casilla casB = new Casilla(i+1, "Casa");
@@ -32,27 +28,14 @@ public class ListaCasillas {
 			// (indice) CasInicPas == "Azul" = 68, "Rojo" = 76, "Verde" = 84, "Amarillo" = 92
 			// la casilla seria una mas
 		}
-		
-		/*this.pasilloR = new ArrayList <Casilla>();
-		this.pasilloA = new ArrayList <Casilla>();
-		this.pasilloZ = new ArrayList <Casilla>();
-		this.pasilloV = new ArrayList <Casilla>();
-		
-		for (int id = 0; id < 8; id++) {
-			if (id < 7) {
-				Casilla cas = new Casilla(id+1, "Pasillo");
-				this.pasilloR.add(cas);
-				this.pasilloA.add(cas);
-				this.pasilloZ.add(cas);
-				this.pasilloV.add(cas);
-			} else {
-				Casilla cas = new Casilla(id+1, "Meta");
-				this.pasilloR.add(cas);
-				this.pasilloA.add(cas);
-				this.pasilloZ.add(cas);
-				this.pasilloV.add(cas);
-			}
-		}*/
+	}
+	
+	public Casilla getCas(int pNum) {
+		if (pNum == 0) {
+			return null;
+		} else {
+			return this.listaC.get(pNum--);
+		}
 	}
 	
 	public Iterator <Casilla> getIterador(){
@@ -87,30 +70,30 @@ public class ListaCasillas {
 		int i = casillaInic.getNumCasilla();
 		i = i-1;
 		Casilla casillaF = casillaInic;
-		boolean sucede = false;
 		while (pNum!=0) {
 			if (i == 16 && pFicha.getColor() == "Azul" && pNum!=0) {
 				casillaInic.eliminarFicha(pFicha);
 				casillaInic = this.listaC.get(68);
 				pFicha.setPasillo(true);
 				casillaInic.ponerFicha(pFicha);
-				System.out.println(this.buscarCasilla(pFicha).getNumCasilla());
 				i = 68;
 			} else if (i == 33 && pFicha.getColor() == "Rojo" && pNum!=0) {
 				casillaInic.eliminarFicha(pFicha);
+				casillaInic = this.listaC.get(77);
 				pFicha.setPasillo(true);
-				casillaF.eliminarFicha(pFicha);
 				casillaInic.ponerFicha(pFicha);
 				i = 77;
 			} else if (i == 50 && pFicha.getColor() == "Verde" && pNum!=0 ) {
 				casillaInic.eliminarFicha(pFicha);
+				casillaInic = this.listaC.get(85);
 				pFicha.setPasillo(true);
-				casillaF.eliminarFicha(pFicha);
 				casillaInic.ponerFicha(pFicha);
 				i = 85;
 			} else if (i == 67 && pFicha.getColor() == "Amarillo" && pNum!=0 ) {
 				casillaInic.eliminarFicha(pFicha);
+				casillaInic = this.listaC.get(93);
 				pFicha.setPasillo(true);
+				casillaInic.ponerFicha(pFicha);
 				i = 93;
 			} else if (i == 67 && pFicha.getColor() != "Amarillo") {
 				i = 0;
@@ -122,6 +105,8 @@ public class ListaCasillas {
 		}
 			casillaF.ponerFicha(pFicha);
 			casillaInic.eliminarFicha(pFicha);
+			i++;
+			pFicha.setCasAct(i);
 	}
 	
 }
