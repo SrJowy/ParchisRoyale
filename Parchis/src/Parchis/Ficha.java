@@ -4,14 +4,12 @@ package Parchis;
 public class Ficha {
 	private String color;
 	private boolean base;
-	private boolean pasillo;
 	private boolean meta;
 	private int casAct;
 	
 	public Ficha(String pColor) {
 		this.color = pColor;
 		this.base = true;
-		this.pasillo = false;
 		this.meta = false;
 		this.casAct = 0;
 	}
@@ -32,14 +30,6 @@ public class Ficha {
 		return this.meta;
 	}
 	
-	public void setPasillo(boolean b) {
-		this.pasillo = b;
-	}
-	
-	public boolean getPasillo() {
-		return this.pasillo;
-	}
-	
 	public boolean getBase() {
 		return this.base;
 	}
@@ -50,11 +40,6 @@ public class Ficha {
 	
 	public String getColor() {
 		return this.color;
-	}
-	
-	public int getCasilla(ListaCasillas lC) {
-		Casilla c = lC.buscarCasilla(this);
-		return c.getNumCasilla();
 	}
 	
 	public void esta(int i, ListaCasillas lC) {
@@ -127,20 +112,30 @@ public class Ficha {
 					casDest = 1;
 				} else if(this.casAct == 17 && this.color == "Azul") {
 					casDest = 69;
+				} else if (this.casAct + pNum > 77 && this.color == "Azul") {
+					return false;
 				} else if (this.casAct == 34 && this.color == "Rojo" ) {
 					casDest = 77;
+				} else if (this.casAct + pNum > 85 && this.color == "Rojo") {
+					return false;
 				} else if (this.casAct == 51 && this.color == "Verde") {
 					casDest = 85;
+				} else if (this.casAct + pNum > 93 && this.color == "Verde") {
+					return false;
 				} else if (this.casAct == 68 && this.color == "Amarillo") {
 					casDest = 93;
+				} else if (this.casAct + pNum > 101 && this.color == "Amarillo") {
+					return false;
 				} else {
 					casDest = this.casAct+1;
 				}
 				pNum = pNum - 1;
 			}
-		}
-		if (lC.getCas(casDest).estaLlena()) {
-			return true;
+			if (lC.getCas(casDest).estaLlena()) {
+				return true;
+			} else {
+				return false;
+			}
 		} else {
 			return false;
 		}

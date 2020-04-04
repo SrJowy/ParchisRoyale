@@ -10,12 +10,8 @@ public class ListaJugadores {
 		this.lista = new ArrayList <Jugador>();
 	}
 	
-	private Iterator<Jugador> getIterador(){
-		return this.lista.iterator();
-	}
-	
 	public void elegirNJugadores(int pNum, ListaCasillas lC) {
-		if (pNum < 2 || pNum > 4) {
+		if (minJug < 2 || pNum > maxJug) {
 			System.out.println("Numero de jugadores no valido");
 			
 		} else if (pNum == 2) {

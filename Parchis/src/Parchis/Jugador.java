@@ -36,4 +36,8 @@ public class Jugador {
 	public ListaFichas getListaFichas() {
 		return this.lista;
 	}
+	
+	public boolean comprobarWin() {
+		return this.lista.comprobarWin();
+	}
 }

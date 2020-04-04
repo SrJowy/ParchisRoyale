@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TableroTest {
-
+	Tablero t;
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -18,7 +18,7 @@ public class TableroTest {
 
 	@Test
 	public void test() {
-		Tablero t = new Tablero();
+		t = Tablero.getTablero();
 		t.jugarPartida();
 	}
 

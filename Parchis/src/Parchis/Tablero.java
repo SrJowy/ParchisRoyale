@@ -6,19 +6,19 @@ public class Tablero {
 	private ListaCasillas listaC;
 	private static Tablero miTablero;
 	
-	/*private*/public Tablero() {
+	private Tablero() {
 		this.listaJ = new ListaJugadores();
 		this.listaC = new ListaCasillas();
 	}
 	
-	/*public Tablero getTablero() {
+	public static Tablero getTablero() {
 		
 		if (Tablero.miTablero == null) {
 			Tablero.miTablero = new Tablero();
 		}
 		
 		return Tablero.miTablero;
-	}*/
+	}
 	
 	public void jugarPartida() {
 		
@@ -38,7 +38,7 @@ public class Tablero {
 			int aux = i+1;
 			System.out.println("Es tu turno jugador " + aux + ", " + pJugador.getColor());
 			System.out.println("                                                       ");
-			int res = Dado.getDado().lanzarDado();
+			int res = Dado.getDado().lanzarDado(pJugador.getListaFichas(),listaC);
 			Ficha pFicha = pJugador.elegirFicha(res, this.listaC);
 			if (pFicha != null) {
 				pFicha.moverFicha(res, this.listaC, pJugador.getListaFichas());
@@ -47,10 +47,14 @@ public class Tablero {
 				System.out.println("------------------------------------------------------");
 				System.out.println("                                                      ");
 			}
-			if (this.listaJ.hemosLlegadoAlFinal(i)) {
-				i = -1;
+			if (pJugador.comprobarWin()) {
+				win = true;
+				System.out.println("Ha ganado el jugador " + aux + ", " + pJugador.getColor());
+			} else {
+				if (this.listaJ.hemosLlegadoAlFinal(i)) {
+					i = -1;
+				}
 			}
-			
 		}
 		
 	}

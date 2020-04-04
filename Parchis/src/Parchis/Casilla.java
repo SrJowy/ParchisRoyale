@@ -11,9 +11,9 @@ public class Casilla {
 		this.tipo = pTipo;
 	}
 	
-	public void setTipo(String pTipo) {
+	/*public void setTipo(String pTipo) {
 		this.tipo = pTipo;
-	}
+	}*/
 	
 	public int getNumCasilla() {
 		return this.numCasilla;

@@ -63,7 +63,32 @@ public class ListaFichas {
 		return hay;
 	}
 	
+	public boolean estanTodasFuera(ListaCasillas lC) {
+		boolean estan = true;
+		Ficha unaFicha;
+		Iterator <Ficha> itr = this.getIterador();
+		while (itr.hasNext()) {
+			unaFicha = itr.next();
+			if (unaFicha.getBase()) {
+				estan = false;
+			}
+		}
+		return estan;
+	}
+	
 	public void anadirFicha( Ficha pFicha) {
 		this.listaF.add(pFicha);
+	}
+	
+	public boolean comprobarWin() {
+		Iterator <Ficha> itr = this.getIterador();
+		Ficha unaFicha;
+		while (itr.hasNext()) {
+			unaFicha = itr.next();
+			if (!unaFicha.getMeta()) {
+				return false;
+			}	
+		}
+		return true;
 	}
 }
