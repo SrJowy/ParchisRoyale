@@ -10,7 +10,7 @@ public class ListaJugadores {
 		this.lista = new ArrayList <Jugador>();
 	}
 	
-	public void elegirNJugadores(int pNum, ListaCasillas lC) {
+	public void elegirNJugadores(int pNum) {
 		if (minJug < 2 || pNum > maxJug) {
 			System.out.println("Numero de jugadores no valido");
 			

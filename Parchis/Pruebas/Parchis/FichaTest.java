@@ -9,8 +9,7 @@ import org.junit.Test;
 public class FichaTest {
 
 	ListaCasillas l1;
-	Ficha f1,f2,f3,f4;
-	ListaFichas lF;
+	Ficha f1,f2,f3,f4,f5;
 	Jugador j1;
 	@Before
 	public void setUp() throws Exception {
@@ -20,9 +19,11 @@ public class FichaTest {
 		f2 = new Ficha("Azul");
 		f3 = new Ficha("Amarillo");
 		f4 = new Ficha("Azul");
+		f5 = new Ficha("Azul");
 		j1.getListaFichas().anadirFicha(f1);
 		j1.getListaFichas().anadirFicha(f2);
-		j1.getListaFichas().anadirFicha(f3);
+		j1.getListaFichas().anadirFicha(f4);
+		j1.getListaFichas().anadirFicha(f5);
 	}
 
 	@After
@@ -44,13 +45,22 @@ public class FichaTest {
 		f3.moverFicha(3, l1, lF);
 		assertEquals(67, l1.buscarCasilla(f3).getNumCasilla());*/
 		
-		l1.sacarFicha(f1, 15);
-		f1.setCasAct(15);
+		//BASE LLENA
+		/*f1.moverFicha(5, l1, j1.getListaFichas());
+		f2.moverFicha(5, l1, j1.getListaFichas());
+		assertEquals(l1.getCas(22).getNumCasilla(), 22);
+		assertEquals(22, l1.buscarCasilla(f1).getNumCasilla());
+		assertEquals(22, l1.buscarCasilla(f2).getNumCasilla());
+		f4.moverFicha(5, l1, j1.getListaFichas());
+		assertEquals(0, f4.getCasAct());
+		assertEquals(0, f5.getCasAct());
+		f1.moverFicha(5, l1, j1.getListaFichas());
+		/*f1.setCasAct(15);
 		f1.setBase(false);
 		assertEquals(15, l1.buscarCasilla(f1).getNumCasilla());
 		f1.moverFicha(3, l1, j1.getListaFichas());
 		assertEquals(69, f1.getCasAct());
-		assertEquals(69, l1.buscarCasilla(f1).getNumCasilla());
+		assertEquals(69, l1.buscarCasilla(f1).getNumCasilla());*/
 	}
 
 	@Test

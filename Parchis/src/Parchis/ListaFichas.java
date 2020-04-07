@@ -67,7 +67,7 @@ public class ListaFichas {
 		boolean estan = true;
 		Ficha unaFicha;
 		Iterator <Ficha> itr = this.getIterador();
-		while (itr.hasNext()) {
+		while (itr.hasNext() && estan) {
 			unaFicha = itr.next();
 			if (unaFicha.getBase()) {
 				estan = false;

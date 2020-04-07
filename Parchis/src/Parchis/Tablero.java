@@ -20,16 +20,21 @@ public class Tablero {
 		return Tablero.miTablero;
 	}
 	
+	public void pulsaCualquierTeclaParaContinuar() {
+		String continuar;
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("Pulsa cualquier tecla para continuar...");
+		continuar = teclado.nextLine();
+	}
+	
 	public void jugarPartida() {
-		
-		
 		
 		boolean win = false;
 		System.out.println("Bienvenido al Parchis Royale!");
 		System.out.println("Por favor, introduce el numero de jugadores");
 		Scanner entrada = new Scanner(System.in);
 		int num = entrada.nextInt();
-		this.listaJ.elegirNJugadores(num, this.listaC);
+		this.listaJ.elegirNJugadores(num);
 		int i = -1;
 		
 		while (!win) {
@@ -42,11 +47,15 @@ public class Tablero {
 			Ficha pFicha = pJugador.elegirFicha(res, this.listaC);
 			if (pFicha != null) {
 				pFicha.moverFicha(res, this.listaC, pJugador.getListaFichas());
+				System.out.println("                                                      ");
+				this.pulsaCualquierTeclaParaContinuar();
 			} else {
 				System.out.println("Le toca al siguiente.");
 				System.out.println("------------------------------------------------------");
 				System.out.println("                                                      ");
+			    this.pulsaCualquierTeclaParaContinuar();
 			}
+			
 			if (pJugador.comprobarWin()) {
 				win = true;
 				System.out.println("Ha ganado el jugador " + aux + ", " + pJugador.getColor());
