@@ -12,71 +12,62 @@ public class ListaFichas {
 		return this.listaF.iterator();
 	}
 	
-	public void esta(ListaCasillas lC) {
+	public void esta() {
 		Ficha unaFicha;
 		int i = -1;
 		Iterator <Ficha> itr = this.getIterador();
 		while (itr.hasNext()) {
 			i++;
 			unaFicha = itr.next();
-			unaFicha.esta(i, lC);
+			unaFicha.esta(i);
 		}
 	}
 	
 	public Ficha elegirFicha(int pInd) {
-		if (pInd < 0 || pInd > 3) {
-			if (pInd != -1) {
-				System.out.println("Por favor, ingresa un numero valido");
-			}
-			Scanner scan = new Scanner(System.in);
-			int i = scan.nextInt();
-			i = i-1;
-			return this.elegirFicha(i);
-		} else {
-			return this.listaF.get(pInd);
-		}
+		pInd--;
+		return this.listaF.get(pInd);
 	}
 	
-	public boolean estanTodasEnCasa(ListaCasillas lC) {
+	public boolean estanTodasEnCasa() {
 		boolean estan = true;
 		Ficha unaFicha;
 		Iterator <Ficha> itr = this.getIterador();
 		while (itr.hasNext() && estan) {
 			unaFicha = itr.next();
-			if (!unaFicha.getBase()) {
+			if (Tablero.getTablero().buscarCasilla(unaFicha) != null) {
 				estan = false;
 			}
 		}
 		return estan;
 	}
 	
-	public boolean hayAlgunaEnCasa(ListaCasillas lC) {
+	public boolean hayAlgunaEnCasa() {
 		boolean hay = false;
 		Ficha unaFicha;
 		Iterator <Ficha> itr = this.getIterador();
 		while (itr.hasNext() && !hay) {
 			unaFicha = itr.next();
-			if (unaFicha.getBase()) {
+			if (Tablero.getTablero().buscarCasilla(unaFicha) == null) {
 				hay = true;
 			}
 		}
 		return hay;
 	}
 	
-	public boolean estanTodasFuera(ListaCasillas lC) {
+	public boolean estanTodasFuera() {
 		boolean estan = true;
 		Ficha unaFicha;
 		Iterator <Ficha> itr = this.getIterador();
 		while (itr.hasNext() && estan) {
 			unaFicha = itr.next();
-			if (unaFicha.getBase()) {
+			if (Tablero.getTablero().buscarCasilla(unaFicha) == null) {
 				estan = false;
 			}
 		}
 		return estan;
 	}
 	
-	public void anadirFicha( Ficha pFicha) {
+	public void anadirFicha(Ficha pFicha) {
 		this.listaF.add(pFicha);
 	}
 	
@@ -85,9 +76,20 @@ public class ListaFichas {
 		Ficha unaFicha;
 		while (itr.hasNext()) {
 			unaFicha = itr.next();
-			if (!unaFicha.getMeta()) {
+			Casilla cas = Tablero.getTablero().buscarCasilla(unaFicha);
+			if (cas == null) {
 				return false;
-			}	
+			} else {
+				if (unaFicha.getColor() == "Azul" && cas.getNumCasilla() != 76) {
+					return false;
+				} else if (unaFicha.getColor() == "Rojo" && cas.getNumCasilla() != 84) {
+					return false;
+				} else if (unaFicha.getColor() == "Verde" && cas.getNumCasilla() != 92) {
+					return false;
+				} else if (unaFicha.getColor() == "Verde" && cas.getNumCasilla() != 92) {
+					return false;
+				}
+			}
 		}
 		return true;
 	}

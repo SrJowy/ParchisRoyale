@@ -1,5 +1,4 @@
 package Parchis;
-import java.util.*;
 
 public class Tablero {
 	private ListaJugadores listaJ;
@@ -20,11 +19,36 @@ public class Tablero {
 		return Tablero.miTablero;
 	}
 	
-	public void pulsaCualquierTeclaParaContinuar() {
-		String continuar;
-		Scanner teclado = new Scanner(System.in);
-		System.out.println("Pulsa cualquier tecla para continuar...");
-		continuar = teclado.nextLine();
+	public Casilla getCasilla(int cas) {
+		return this.listaC.getCas(cas);
+	}
+	
+	public void sacarFicha(Ficha pFicha, int pCas) {
+		this.listaC.sacarFicha(pFicha, pCas);
+	}
+	
+	public Casilla buscarCasilla (Ficha pFicha) {
+		return this.listaC.buscarCasilla(pFicha);
+	}
+	
+	public void moverFicha (int pNum, Ficha pFicha) {
+		this.listaC.moverFicha(pNum, pFicha);
+	}
+	
+	public int lanzarDado(ListaFichas l1) {
+		int res = Dado.getDado().lanzarDado();
+		if (l1.estanTodasFuera() && res == 6) {
+			res++;
+		}
+		return res;
+	}
+	
+	public boolean comprobarCasLlena(int pNum, Ficha pFicha) {
+		return this.listaC.comprobarCasLlena(pNum, pFicha);
+	}
+	
+	public boolean comprobarCasSalidaLlena(Ficha pFicha) {
+		return this.listaC.casSalidaLlena(pFicha);
 	}
 	
 	public void jugarPartida() {
@@ -32,8 +56,7 @@ public class Tablero {
 		boolean win = false;
 		System.out.println("Bienvenido al Parchis Royale!");
 		System.out.println("Por favor, introduce el numero de jugadores");
-		Scanner entrada = new Scanner(System.in);
-		int num = entrada.nextInt();
+		int num = Teclado.getTeclado().elegirNumeroJugadores();
 		this.listaJ.elegirNJugadores(num);
 		int i = -1;
 		
@@ -43,17 +66,17 @@ public class Tablero {
 			int aux = i+1;
 			System.out.println("Es tu turno jugador " + aux + ", " + pJugador.getColor());
 			System.out.println("                                                       ");
-			int res = Dado.getDado().lanzarDado(pJugador.getListaFichas(),listaC);
+			int res = this.lanzarDado(pJugador.getListaFichas());
 			Ficha pFicha = pJugador.elegirFicha(res, this.listaC);
 			if (pFicha != null) {
-				pFicha.moverFicha(res, this.listaC, pJugador.getListaFichas());
+				pFicha.moverFicha(res, pJugador.getListaFichas());
 				System.out.println("                                                      ");
-				this.pulsaCualquierTeclaParaContinuar();
+				Teclado.getTeclado().pulsaCualquierTeclaParaContinuar();
 			} else {
 				System.out.println("Le toca al siguiente.");
 				System.out.println("------------------------------------------------------");
 				System.out.println("                                                      ");
-			    this.pulsaCualquierTeclaParaContinuar();
+			    Teclado.getTeclado().pulsaCualquierTeclaParaContinuar();
 			}
 			
 			if (pJugador.comprobarWin()) {

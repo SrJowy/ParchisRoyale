@@ -1,5 +1,4 @@
 package Parchis;
-import java.util.*;
 
 public class Jugador {
 	private ListaFichas lista;
@@ -18,17 +17,15 @@ public class Jugador {
 	
 	public Ficha elegirFicha(int pRes, ListaCasillas lC) {
 		System.out.println("Tus fichas estan en:");
-		this.lista.esta(lC);
-		if (this.lista.estanTodasEnCasa(lC) && pRes !=5) {
-			System.out.println("                                                 ");
+		this.lista.esta();
+		if (this.lista.estanTodasEnCasa() && pRes !=5) {
+			System.out.println("                                                ");
 			System.out.println("No puedes mover tu ficha, porque no puedes sacar");
 			return null;
 		} else {
 			System.out.println("                                                 ");
 			System.out.println("Elige la ficha que quieres mover");
-			Scanner scan = new Scanner(System.in);
-			int i = scan.nextInt();
-			i = i-1;
+			int i = Teclado.getTeclado().pedirNFicha();
 			return this.lista.elegirFicha(i);
 		}
 	}
