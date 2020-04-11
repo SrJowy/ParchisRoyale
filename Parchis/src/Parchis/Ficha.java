@@ -27,8 +27,8 @@ public class Ficha {
 				if (Tablero.getTablero().buscarCasilla(this) == null) {
 					if (pNum == 5 && !Tablero.getTablero().comprobarCasSalidaLlena(this)) { //sacar ficha a menos que la casilla de salida este llena
 						this.sacarFicha();
-						System.out.println("                                                                           ");
-						System.out.println("Ahora tu ficha esta en la casilla " + Tablero.getTablero().buscarCasilla(this).getNumCasilla());
+						
+						
 					} else {
 						System.out.println("Esa ficha no se puede elegir, elige otra."); 
 						lF.elegirFicha(Teclado.getTeclado().pedirNFicha()).moverFicha(pNum, lF);
@@ -39,11 +39,10 @@ public class Ficha {
 					
 				} else if (!Tablero.getTablero().comprobarCasLlena(pNum, this) && Tablero.getTablero().comprobarCasSalidaLlena(this) && pNum == 5){ //la casilla de destino esta vacia y se puede mover
 					Tablero.getTablero().moverFicha(pNum, this);														   //con 5 puesto que la casilla de salida esta llena
-					System.out.println("Ahora tu ficha esta en la casilla " + Tablero.getTablero().buscarCasilla(this).getNumCasilla());
 					
 				} else if (!Tablero.getTablero().comprobarCasLlena(pNum, this)) {
 					Tablero.getTablero().moverFicha(pNum, this);
-					System.out.println("Ahora tu ficha esta en la casilla " + Tablero.getTablero().buscarCasilla(this).getNumCasilla());
+					
 					//se puede mover puesto que la casilla de destino no esta llena
 				} else {
 					System.out.println("Esa ficha no se puede elegir, elige otra.");
@@ -51,7 +50,7 @@ public class Ficha {
 				}
 			} else if (!Tablero.getTablero().comprobarCasLlena(pNum, this)) {
 				Tablero.getTablero().moverFicha(pNum, this);
-				System.out.println("Ahora tu ficha esta en la casilla " + Tablero.getTablero().buscarCasilla(this).getNumCasilla());
+				
 			} else {
 				System.out.println("Esa ficha no se puede elegir, elige otra.");
 				lF.elegirFicha(Teclado.getTeclado().pedirNFicha()).moverFicha(pNum, lF);

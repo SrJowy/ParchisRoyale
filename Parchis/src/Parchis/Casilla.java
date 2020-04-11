@@ -2,8 +2,8 @@ package Parchis;
 
 public abstract class Casilla {
 	private int numCasilla;
-	private Ficha hueco1 = null;
-	private Ficha hueco2 = null;
+	protected Ficha hueco1 = null;
+	protected Ficha hueco2 = null;
 	
 	public Casilla(int pNumCas) {
 		this.numCasilla = pNumCas;
@@ -13,38 +13,21 @@ public abstract class Casilla {
 		return this.numCasilla;
 	}
 	
-	public void ponerFicha(Ficha pFicha) {
-		if (this.estaOcupada()) {
-			if (this instanceof Normal){
-				if (this.hueco1 != null && this.hueco1.colorDiferente(pFicha)) {
-					this.hueco2 = pFicha;
-					System.out.println("Has comido la ficha de color " + this.hueco1.getColor());
-					this.eliminarFicha(hueco1);
-				} else if (this.hueco2 != null && this.hueco2.colorDiferente(pFicha)) {
-					this.hueco1 = pFicha;
-					System.out.println("Has comido la ficha de color " + this.hueco1.getColor());
-					this.eliminarFicha(hueco2);		
-				} else {
-					if (this.hueco1 == null) {
-						this.hueco1 = pFicha;
-					} else {
-						this.hueco2 = pFicha;
-					}
-				}
-			} else {
-				if (this.hueco1 == null) {
-					this.hueco1 = pFicha;
-				} else {
-					this.hueco2 = pFicha;
-				}
-			}
-		} else {
-			if (this.hueco1 == null) {
-				this.hueco1 = pFicha;
-			} else {
-				this.hueco2 = pFicha; 
-			}
+	public void ponerFicha(Ficha pFicha, Casilla pCas) {
+		if (pCas != null) {
+			pCas.eliminarFicha(pFicha);
 		}
+		
+		if (this.hueco1 == null) {
+			this.hueco1 = pFicha;
+		} else {
+			this.hueco2 = pFicha; 
+			//this.hueco1 = pFicha;
+		}
+		if (this instanceof Meta) {
+			Tablero.getTablero().contarNum(10);
+		}
+		System.out.println("Ahora tu ficha de color " + pFicha.getColor() + " esta en la casilla " + this.getNumCasilla());
 	}
 	
 	public boolean esta (Ficha pFicha) {

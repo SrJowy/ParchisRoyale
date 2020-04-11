@@ -15,7 +15,7 @@ public class Jugador {
 		return this.color;
 	}
 	
-	public Ficha elegirFicha(int pRes, ListaCasillas lC) {
+	public Ficha elegirFicha(int pRes) {
 		System.out.println("Tus fichas estan en:");
 		this.lista.esta();
 		if (this.lista.estanTodasEnCasa() && pRes !=5) {

@@ -50,14 +50,13 @@ public class ListaCasillas {
 	public void sacarFicha(Ficha pFicha, int pCas) {
 		pCas = pCas-1;
 		Casilla pCasilla = this.listaC.get(pCas);
-		pCasilla.ponerFicha(pFicha);
+		pCasilla.ponerFicha(pFicha, null);
 	}
 	
 	public Casilla buscarCasilla(Ficha pFicha) {
-		boolean enc = false;
 		Casilla unaCasilla;
 		Iterator <Casilla> itr = this.getIterador();
-		while (itr.hasNext() && !enc) {
+		while (itr.hasNext()) {
 			unaCasilla = itr.next();
 			if (unaCasilla.esta(pFicha)) {
 				return unaCasilla;
@@ -75,22 +74,22 @@ public class ListaCasillas {
 			if (i == 16 && pFicha.getColor() == "Azul") {
 				casillaInic.eliminarFicha(pFicha);
 				casillaInic = this.listaC.get(68);
-				casillaInic.ponerFicha(pFicha);
+				casillaInic.ponerFicha(pFicha,casillaInic);
 				i = 68;
 			} else if (i == 33 && pFicha.getColor() == "Rojo") {
 				casillaInic.eliminarFicha(pFicha);
 				casillaInic = this.listaC.get(76);
-				casillaInic.ponerFicha(pFicha);
+				casillaInic.ponerFicha(pFicha,casillaInic);
 				i = 76;
 			} else if (i == 50 && pFicha.getColor() == "Verde") {
 				casillaInic.eliminarFicha(pFicha);
 				casillaInic = this.listaC.get(84);
-				casillaInic.ponerFicha(pFicha);
+				casillaInic.ponerFicha(pFicha,casillaInic);
 				i = 84;
 			} else if (i == 67 && pFicha.getColor() == "Amarillo") {
 				casillaInic.eliminarFicha(pFicha);
 				casillaInic = this.listaC.get(92);
-				casillaInic.ponerFicha(pFicha);
+				casillaInic.ponerFicha(pFicha,casillaInic);
 				i = 92;
 			} else if (i == 67) {
 				i = 0;
@@ -100,8 +99,7 @@ public class ListaCasillas {
 				casillaF = this.listaC.get(i);
 				pNum = pNum-1;
 		}
-		casillaF.ponerFicha(pFicha);
-		casillaInic.eliminarFicha(pFicha);
+		casillaF.ponerFicha(pFicha, casillaInic);
 		i++;
 	}
 	

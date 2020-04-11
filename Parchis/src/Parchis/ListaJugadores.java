@@ -130,4 +130,8 @@ public class ListaJugadores {
 		}
 		return false;
 	}
+	
+	public void anadirJugador(Jugador pJugador) {
+		this.lista.add(pJugador);
+	}
 }
