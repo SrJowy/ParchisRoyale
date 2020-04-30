@@ -11,7 +11,7 @@ public class ListaJugadores {
 	}
 	
 	public void elegirNJugadores(int pNum) {
-		if (minJug < 2 || pNum > maxJug) {
+		if (pNum < minJug || pNum > maxJug) {
 			System.out.println("Numero de jugadores no valido");
 			
 		} else if (pNum == 2) {
@@ -132,6 +132,25 @@ public class ListaJugadores {
 	}
 	
 	public void anadirJugador(Jugador pJugador) {
+		String color;
 		this.lista.add(pJugador);
+		if (pJugador.getColor() == "Azul") {
+			color = "Azul";
+		} else if (pJugador.getColor() == "Rojo") {
+			color = "Rojo";
+		} else if (pJugador.getColor() == "Verde") {
+			color = "Verde";
+		} else {
+			color = "Amarillo";
+		}
+		
+		Ficha f1 = new Ficha(color);
+		pJugador.getListaFichas().anadirFicha(f1);
+		Ficha f2 = new Ficha(color);
+		pJugador.getListaFichas().anadirFicha(f2);
+		Ficha f3 = new Ficha(color);
+		pJugador.getListaFichas().anadirFicha(f3);
+		Ficha f4 = new Ficha(color);
+		pJugador.getListaFichas().anadirFicha(f4);
 	}
 }
