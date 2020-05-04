@@ -59,5 +59,10 @@ public abstract class Casilla {
 		return false;
 	}
 	
+	public void limpiar() {
+		this.hueco1 = null;
+		this.hueco2 = null;
+	}
+	
 	public abstract String getTipo();
 }

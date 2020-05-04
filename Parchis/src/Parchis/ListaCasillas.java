@@ -72,33 +72,21 @@ public class ListaCasillas {
 		Casilla casillaF = casillaInic;
 		while (pNum!=0) {
 			if (i == 16 && pFicha.getColor() == "Azul") {
-				casillaInic.eliminarFicha(pFicha);
-				casillaInic = this.listaC.get(68);
-				casillaInic.ponerFicha(pFicha,casillaInic);
 				i = 68;
 			} else if (i == 33 && pFicha.getColor() == "Rojo") {
-				casillaInic.eliminarFicha(pFicha);
-				casillaInic = this.listaC.get(76);
-				casillaInic.ponerFicha(pFicha,casillaInic);
 				i = 76;
 			} else if (i == 50 && pFicha.getColor() == "Verde") {
-				casillaInic.eliminarFicha(pFicha);
-				casillaInic = this.listaC.get(84);
-				casillaInic.ponerFicha(pFicha,casillaInic);
 				i = 84;
 			} else if (i == 67 && pFicha.getColor() == "Amarillo") {
-				casillaInic.eliminarFicha(pFicha);
-				casillaInic = this.listaC.get(92);
-				casillaInic.ponerFicha(pFicha,casillaInic);
 				i = 92;
 			} else if (i == 67) {
 				i = 0;
 			} else {
 				i++;
 			}
-				casillaF = this.listaC.get(i);
 				pNum = pNum-1;
 		}
+		casillaF = this.listaC.get(i);
 		casillaF.ponerFicha(pFicha, casillaInic);
 		i++;
 	}
@@ -106,24 +94,24 @@ public class ListaCasillas {
 	public boolean comprobarCasLlena(int pNum, Ficha pFicha) {
 		int casDest = this.buscarCasilla(pFicha).getNumCasilla();
 			while (pNum > 0) {
-				if (casDest == 68 && pFicha.getColor() == "Amarillo") {
+				if (casDest == 68 && pFicha.getColor() != "Amarillo") {
 					casDest = 1;
 				} else if(casDest == 17 && pFicha.getColor() == "Azul") {
 					casDest = 69;
-				} else if (casDest + pNum > 77 && pFicha.getColor() == "Azul") {
-					return false;
+				} else if (casDest >= 76 && pFicha.getColor() == "Azul") {
+					return true;
 				} else if (casDest == 34 && pFicha.getColor() == "Rojo" ) {
 					casDest = 77;
-				} else if (casDest + pNum > 85 && pFicha.getColor() == "Rojo") {
-					return false;
+				} else if (casDest >= 84 && pFicha.getColor() == "Rojo") {
+					return true;
 				} else if (casDest == 51 && pFicha.getColor() == "Verde") {
 					casDest = 85;
-				} else if (casDest + pNum > 93 && pFicha.getColor() == "Verde") {
-					return false;
+				} else if (casDest >= 92 && pFicha.getColor() == "Verde") {
+					return true;
 				} else if (casDest == 68 && pFicha.getColor() == "Amarillo") {
 					casDest = 93;
-				} else if (casDest + pNum > 101 && pFicha.getColor() == "Amarillo") {
-					return false;
+				} else if (casDest >= 100 && pFicha.getColor() == "Amarillo") {
+					return true;
 				} else {
 					casDest++;
 				}
@@ -151,6 +139,16 @@ public class ListaCasillas {
 			return true;
 		} else {
 			return false;
+		}
+	}
+	
+	public void limpiarTablero() {
+		Casilla unaCasilla;
+		Iterator <Casilla> itr = this.getIterador();
+		
+		while (itr.hasNext()) {
+			unaCasilla = itr.next();
+			unaCasilla.limpiar();
 		}
 	}
 	

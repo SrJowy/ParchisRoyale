@@ -12,6 +12,11 @@ public class ListaFichas {
 		return this.listaF.iterator();
 	}
 	
+	public Ficha getFicha(int i) {
+		i--;
+		return this.listaF.get(i);
+	}
+	
 	public void esta() {
 		Ficha unaFicha;
 		int i = -1;

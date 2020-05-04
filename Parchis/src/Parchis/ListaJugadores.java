@@ -118,9 +118,8 @@ public class ListaJugadores {
 			j4.getListaFichas().anadirFicha(f44);
 		}
 	}
-	
+
 	public Jugador elegirJugador(int i) {
-		
 		return this.lista.get(i);
 	}
 	
@@ -153,4 +152,5 @@ public class ListaJugadores {
 		Ficha f4 = new Ficha(color);
 		pJugador.getListaFichas().anadirFicha(f4);
 	}
+	
 }

@@ -14,13 +14,23 @@ public class Teclado {
 		return Teclado.miTeclado;
 	}
 	
+	public int elegirValor() {
+		int valor;
+		sc = new Scanner(System.in);
+		valor = sc.nextInt();
+		return valor;
+	}
+	
 	public int elegirNumeroJugadores() {
 		int jug = 0;
 		do {
 			try {
 				sc = new Scanner(System.in);
 				jug = sc.nextInt();
-			} catch (InputMismatchException e) {
+				if (jug < 2 || jug > 4) {
+					throw new Exception();
+				}
+			} catch (Exception e) {
 				System.out.println("Introduce un valor del 2 al 4");
 			}
 		} while(jug < 2 || jug > 4);
@@ -32,7 +42,7 @@ public class Teclado {
 		sc = new Scanner(System.in);
 		System.out.println("Pulsa intro para continuar...");
 		sc.nextLine();
-		System.out.println("                                        ");
+		System.out.println(" ");
 	}
 	
 	public int pedirNFicha() {
@@ -47,6 +57,25 @@ public class Teclado {
 		} while(ficha < 1 || ficha > 4);
 		
 		return ficha;
+	}
+	
+	public int pasar() {
+		boolean bien = false;
+		int c = 2;
+		do {
+			try {
+				sc = new Scanner(System.in);
+				c = sc.nextInt();
+				if (c != 1 && c != 2) {
+					throw new Exception();
+				} else {
+					bien = true;
+				}
+			} catch (Exception e) {
+				System.out.println("Introduce 1 si quieres continuar o 2 si quieres pasar");
+			}
+		} while(!bien);
+		return c;
 	}
 	
 }

@@ -3,9 +3,9 @@ package Parchis;
 public class Tablero {
 	private ListaJugadores listaJ;
 	private ListaCasillas listaC;
-	private static Tablero miTablero;
+	private static Tablero miTablero = null;
 	private int turno = -1;
-	private static Tablero instancia = new Tablero();
+	private boolean trucos = false;
 	
 	private Tablero() {
 		this.listaJ = new ListaJugadores();
@@ -22,14 +22,16 @@ public class Tablero {
 	}
 	
 	public void contarNum(int pNum) {
-		this.turno++;
 		int res = pNum;
-		Jugador pJugador = this.listaJ.elegirJugador(this.turno);
 		System.out.println("");
 		System.out.println("Elige ficha y cuenta " + pNum);
 		System.out.println("");
-		Ficha pFicha = pJugador.elegirFicha(res);
-		pFicha.moverFicha(res, pJugador.getListaFichas());
+		Ficha pFicha = this.listaJ.elegirJugador(this.turno).elegirFicha(res);
+		pFicha.moverFicha(res, this.listaJ.elegirJugador(this.turno).getListaFichas());
+	}
+	
+	public void limpiarTablero() {
+		this.listaC.limpiarTablero();
 	}
 	
 	public void volverATirar() {
@@ -74,11 +76,12 @@ public class Tablero {
 	}
 	
 	public static void main(String[]args) {
-		instancia.jugarPartida();
+		Tablero.getTablero().jugarPartida();
 	}
 	
 	public void jugarPartida() {
 		
+		int res;
 		boolean win = false;
 		System.out.println("Bienvenido al Parchis Royale!");
 		System.out.println("Por favor, introduce el numero de jugadores");
@@ -90,8 +93,15 @@ public class Tablero {
 			Jugador pJugador = this.listaJ.elegirJugador(this.turno);
 			int aux = this.turno+1;
 			System.out.println("Es tu turno jugador " + aux + ", " + pJugador.getColor());
-			System.out.println("                                                       ");
-			int res = this.lanzarDado(pJugador.getListaFichas());
+			System.out.println("");
+			
+			if (this.trucos) {
+				System.out.println("Elige un valor");
+				res = Teclado.getTeclado().elegirValor();
+			} else {
+				res = this.lanzarDado(pJugador.getListaFichas());
+			}
+			
 			Ficha pFicha = pJugador.elegirFicha(res);
 			if (pFicha != null) {
 				pFicha.moverFicha(res, pJugador.getListaFichas());
@@ -101,6 +111,7 @@ public class Tablero {
 			}
 			System.out.println("                                                      ");
 			Teclado.getTeclado().pulsaCualquierTeclaParaContinuar();
+			System.out.println("------------------------------------------------------");
 			
 			if (pJugador.comprobarWin()) {
 				win = true;
@@ -111,6 +122,5 @@ public class Tablero {
 				}
 			}
 		}
-		
 	}
 }
