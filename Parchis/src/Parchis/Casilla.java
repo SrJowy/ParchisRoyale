@@ -24,9 +24,6 @@ public abstract class Casilla {
 			this.hueco2 = pFicha; 
 			//this.hueco1 = pFicha;
 		}
-		if (this instanceof Meta) {
-			Tablero.getTablero().contarNum(10);
-		}
 		System.out.println("Ahora tu ficha de color " + pFicha.getColor() + " esta en la casilla " + this.getNumCasilla());
 	}
 	

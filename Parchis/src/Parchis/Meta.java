@@ -27,7 +27,13 @@ public class Meta extends Casilla{
 		return false;
 	}
 	
-	public void ponerFicha(Ficha pFicha) {
+	public void ponerFicha(Ficha pFicha, Casilla pCas) {
+		
+		System.out.println("Has llegado a la meta con una ficha");
+		
+		if (pCas != null) {
+			pCas.eliminarFicha(pFicha);
+		}
 		
 		if (this.hueco1 == null) {
 			this.hueco1 = pFicha;
@@ -41,5 +47,7 @@ public class Meta extends Casilla{
 		} else {
 			this.hueco4 = pFicha;
 		}
+		
+		Tablero.getTablero().contarNum(10);
 	}
 }
