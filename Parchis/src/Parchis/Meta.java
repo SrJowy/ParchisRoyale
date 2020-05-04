@@ -48,6 +48,9 @@ public class Meta extends Casilla{
 			this.hueco4 = pFicha;
 		}
 		
-		Tablero.getTablero().contarNum(10);
+		if (!this.estaLlena()) {
+			Tablero.getTablero().contarNum(10);
+		}
+		
 	}
 }

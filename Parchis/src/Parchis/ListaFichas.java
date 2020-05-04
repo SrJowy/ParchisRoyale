@@ -84,17 +84,16 @@ public class ListaFichas {
 			Casilla cas = Tablero.getTablero().buscarCasilla(unaFicha);
 			if (cas == null) {
 				return false;
-			} else {
-				if (unaFicha.getColor() == "Azul" && cas.getNumCasilla() != 76) {
-					return false;
-				} else if (unaFicha.getColor() == "Rojo" && cas.getNumCasilla() != 84) {
-					return false;
-				} else if (unaFicha.getColor() == "Verde" && cas.getNumCasilla() != 92) {
-					return false;
-				} else if (unaFicha.getColor() == "Verde" && cas.getNumCasilla() != 92) {
-					return false;
-				}
+			} else if (unaFicha.getColor() == "Azul" && cas.getNumCasilla() != 76) {
+				return false;
+			} else if (unaFicha.getColor() == "Rojo" && cas.getNumCasilla() != 84) {
+				return false;
+			} else if (unaFicha.getColor() == "Verde" && cas.getNumCasilla() != 92) {
+				return false;
+			} else if (unaFicha.getColor() == "Verde" && cas.getNumCasilla() != 92) {
+				return false;
 			}
+			
 		}
 		return true;
 	}
