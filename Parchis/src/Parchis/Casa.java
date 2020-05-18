@@ -7,6 +7,6 @@ public class Casa extends Casilla{
 	}
 	
 	public String getTipo() {
-		return "Casa";
+		return "una Casa";
 	}
 }

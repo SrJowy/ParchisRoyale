@@ -7,6 +7,6 @@ public class Seguro extends Casilla {
 	}
 	
 	public String getTipo() {
-		return "Seguro";
+		return " un Seguro";
 	}
 }

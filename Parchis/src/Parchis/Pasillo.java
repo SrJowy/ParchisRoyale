@@ -7,6 +7,6 @@ public class Pasillo extends Casilla {
 	}
 	
 	public String getTipo() {
-		return "Pasillo";
+		return " un Pasillo";
 	}
 }

@@ -7,7 +7,7 @@ public class Normal extends Casilla{
 	}
 	
 	public String getTipo() {
-		return "Normal";
+		return "una Normal";
 	}
 	
 	public void ponerFicha(Ficha pFicha, Casilla pCas) {

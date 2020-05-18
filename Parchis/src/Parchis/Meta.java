@@ -10,7 +10,7 @@ public class Meta extends Casilla{
 	}
 	
 	public String getTipo() {
-		return "Meta";
+		return "una Meta";
 	}
 	
 	public boolean estaLlena() {
