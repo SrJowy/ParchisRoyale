@@ -18,8 +18,6 @@ public class Dado {
 	
 	public int lanzarDado() {
 		int n = al.nextInt(6) + 1;
-		System.out.println("--> Has sacado un " + n);
-		
 		return n;
 	}
 }

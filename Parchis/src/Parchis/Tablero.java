@@ -60,6 +60,8 @@ public class Tablero {
 		if (l1.estanTodasFuera() && res == 6) {
 			res++;
 		}
+		System.out.println("--> Has sacado un " + res);
+		
 		return res;
 	}
 	
@@ -83,7 +85,7 @@ public class Tablero {
 		
 		int res;
 		boolean win = false;
-		System.out.println("Bienvenido al Parchis Royale!");
+		System.out.println("Bienvenido al Parchis Royale Master!");
 		System.out.println("Por favor, introduce el numero de jugadores");
 		int num = Teclado.getTeclado().elegirNumeroJugadores();
 		this.listaJ.elegirNJugadores(num);
