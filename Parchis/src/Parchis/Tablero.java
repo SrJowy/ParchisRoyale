@@ -30,6 +30,10 @@ public class Tablero {
 		pFicha.moverFicha(res, this.listaJ.elegirJugador(this.turno).getListaFichas());
 	}
 	
+	public void setTurno(int pNum) {
+		this.turno = pNum;
+	}
+	
 	public void limpiarTablero() {
 		this.listaC.limpiarTablero();
 	}
@@ -59,14 +63,19 @@ public class Tablero {
 		int res = Dado.getDado().lanzarDado();
 		if (l1.estanTodasFuera() && res == 6) {
 			res++;
+			System.out.println("Se ha sumado uno al resultado del dado por tener todas las fichas fuera");
 		}
 		System.out.println("--> Has sacado un " + res);
 		
 		return res;
 	}
 	
-	public void anadirJugador(Jugador pJugador) {
-		this.listaJ.anadirJugador(pJugador);
+	public void anadirJugadores(int pNum) {
+		this.listaJ.elegirNJugadores(pNum);
+	}
+	
+	public Jugador getJugador(int pNum) {
+		return this.listaJ.elegirJugador(pNum);
 	}
 	
 	public boolean comprobarCasLlena(int pNum, Ficha pFicha) {
