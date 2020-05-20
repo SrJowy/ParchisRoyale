@@ -14,7 +14,7 @@ public class Ficha {
 	public void esta(int i) {
 		i = i+1;
 		if (Tablero.getTablero().buscarCasilla(this) == null) {
-			System.out.println("La ficha numero " + i + " esta en la base");
+			System.out.println("La ficha numero " + i + " esta en la Base");
 		} else {
 			Casilla pCas = Tablero.getTablero().buscarCasilla(this);
 			System.out.println("La ficha numero " + i + " esta en la casilla " + pCas.getNumCasilla() + " que es " + pCas.getTipo());
@@ -53,7 +53,7 @@ public class Ficha {
 				
 		}catch (NoSePuedeMoverException e) {
 				
-			System.out.println("Esa ficha no se puede elegir; pulsa 1 para elegir otra o pulsa 2 para pasar"); 
+			System.out.println("Esa ficha no se puede mover; pulsa 1 para elegir otra o pulsa 2 para pasar"); 
 			if (Teclado.getTeclado().pasar() == 2) {
 				System.out.println("Has pasado tu turno");
 					
