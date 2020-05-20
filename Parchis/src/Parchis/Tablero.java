@@ -127,6 +127,8 @@ public class Tablero {
 			if (pJugador.comprobarWin()) {
 				win = true;
 				System.out.println("Ha ganado el jugador " + aux + ", " + pJugador.getColor());
+			} else if (res == 6 || res == 7) {
+				this.volverATirar();
 			} else {
 				if (this.listaJ.hemosLlegadoAlFinal(this.turno)) {
 					this.turno = -1;
