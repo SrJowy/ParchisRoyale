@@ -5,7 +5,7 @@ public class Tablero {
 	private ListaCasillas listaC;
 	private static Tablero miTablero = null;
 	private int turno = -1;
-	private boolean trucos = true;
+	private boolean trucos = false;
 	
 	private Tablero() {
 		this.listaJ = new ListaJugadores();
