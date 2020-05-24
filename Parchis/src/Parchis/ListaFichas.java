@@ -90,7 +90,7 @@ public class ListaFichas {
 				return false;
 			} else if (unaFicha.getColor() == "Verde" && cas.getNumCasilla() != 92) {
 				return false;
-			} else if (unaFicha.getColor() == "Verde" && cas.getNumCasilla() != 92) {
+			} else if (unaFicha.getColor() == "Amarillo" && cas.getNumCasilla() != 100) {
 				return false;
 			}
 			

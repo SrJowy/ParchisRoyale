@@ -33,7 +33,7 @@ public class OfficialTest {
 
 	@Test
 	public void casillaSalidaLlena() {
-		System.out.println("TEST: casillaSalidaLLeno");
+		System.out.println("TEST: casillaSalidaLlena");
 		f1.moverFicha(5, j1.getListaFichas());
 		f2.moverFicha(5, j1.getListaFichas());
 		f3.moverFicha(5, j1.getListaFichas());

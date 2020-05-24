@@ -54,15 +54,19 @@ public class ListaCasillas {
 	}
 	
 	public Casilla buscarCasilla(Ficha pFicha) {
-		Casilla unaCasilla;
+		Casilla unaCasilla = null;
+		boolean esta = false;
 		Iterator <Casilla> itr = this.getIterador();
-		while (itr.hasNext()) {
+		while (itr.hasNext() && !esta) {
 			unaCasilla = itr.next();
 			if (unaCasilla.esta(pFicha)) {
-				return unaCasilla;
+				esta = true;
 			}
 		}
-		return null;
+		if (!esta) {
+			unaCasilla = null;
+		}
+		return unaCasilla;
 	}
 	
 	public void moverFicha(int pNum, Ficha pFicha) {
@@ -92,9 +96,15 @@ public class ListaCasillas {
 	}
 	
 	public boolean comprobarCasLlena(int pNum, Ficha pFicha) {
+		int casDest = 0;
 		boolean fuera = false;
 		boolean bloq = false;
-		int casDest = this.buscarCasilla(pFicha).getNumCasilla();
+		Casilla casDestO = this.buscarCasilla(pFicha);
+		if (casDestO == null) {
+			return true;
+		} else {
+			casDest = casDestO.getNumCasilla();
+		}
 			while (pNum > 0 && !bloq && !fuera) {
 				if (this.getCas(casDest).estaLlena() && this.getCas(casDest).hueco1.getColor() == this.getCas(casDest).hueco2.getColor() && this.buscarCasilla(pFicha).getNumCasilla() != casDest){
 					System.out.println("Se ha encontrado un bloqueo en la casilla " + casDest);
@@ -104,19 +114,13 @@ public class ListaCasillas {
 					casDest = 1;
 				} else if(casDest == 17 && pFicha.getColor() == "Azul") {
 					casDest = 69;
-				} else if (casDest >= 76 && pFicha.getColor() == "Azul") {
-					fuera = true;
 				} else if (casDest == 34 && pFicha.getColor() == "Rojo" ) {
 					casDest = 77;
-				} else if (casDest >= 84 && pFicha.getColor() == "Rojo") {
-					fuera = true;
 				} else if (casDest == 51 && pFicha.getColor() == "Verde") {
 					casDest = 85;
-				} else if (casDest >= 92 && pFicha.getColor() == "Verde") {
-					fuera = true;
 				} else if (casDest == 68 && pFicha.getColor() == "Amarillo") {
 					casDest = 93;
-				} else if (casDest >= 100 && pFicha.getColor() == "Amarillo") {
+				} else if ((casDest >= 76 && pFicha.getColor() == "Azul") || (casDest >= 84 && pFicha.getColor() == "Rojo") || (casDest >= 92 && pFicha.getColor() == "Verde") || (casDest >= 100 && pFicha.getColor() == "Amarillo")) {
 					fuera = true;
 				} else {
 					casDest++;

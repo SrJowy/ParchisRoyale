@@ -91,7 +91,7 @@ public class Tablero {
 	}
 	
 	public void jugarPartida() {
-		
+		boolean vtirar = false;
 		int res;
 		boolean win = false;
 		System.out.println("Bienvenido al Parchis Royale Master!");
@@ -103,7 +103,10 @@ public class Tablero {
 			this.turno++;
 			Jugador pJugador = this.listaJ.elegirJugador(this.turno);
 			int aux = this.turno+1;
-			System.out.println("Es tu turno jugador " + aux + ", " + pJugador.getColor());
+			if (!vtirar) {
+				System.out.println("Es tu turno jugador " + aux + ", " + pJugador.getColor());
+			}
+			vtirar = false;
 			System.out.println("");
 			
 			if (this.trucos) {
@@ -129,6 +132,7 @@ public class Tablero {
 				System.out.println("Ha ganado el jugador " + aux + ", " + pJugador.getColor());
 			} else if (res == 6 || res == 7) {
 				this.volverATirar();
+				vtirar = true;
 			} else {
 				if (this.listaJ.hemosLlegadoAlFinal(this.turno)) {
 					this.turno = -1;

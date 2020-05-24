@@ -16,18 +16,20 @@ public class Jugador {
 	}
 	
 	public Ficha elegirFicha(int pRes) {
+		Ficha pFicha = null;
 		System.out.println("Tus fichas estan en:");
 		this.lista.esta();
 		if (this.lista.estanTodasEnCasa() && pRes !=5) {
 			System.out.println("");
 			System.out.println("No puedes mover tu ficha, porque no puedes sacar");
-			return null;
 		} else {
 			System.out.println("");
 			System.out.println("Elige la ficha que quieres mover");
 			int i = Teclado.getTeclado().pedirNFicha();
-			return this.lista.elegirFicha(i);
+			pFicha = this.lista.elegirFicha(i);
 		}
+		
+		return pFicha;
 	}
 	
 	public ListaFichas getListaFichas() {

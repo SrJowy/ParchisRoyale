@@ -13,45 +13,27 @@ public class Ficha {
 	
 	public void esta(int i) {
 		i = i+1;
-		if (Tablero.getTablero().buscarCasilla(this) == null) {
+		Casilla pCas = Tablero.getTablero().buscarCasilla(this);
+		if (pCas == null) {
 			System.out.println("La ficha numero " + i + " esta en la Base");
 		} else {
-			Casilla pCas = Tablero.getTablero().buscarCasilla(this);
 			System.out.println("La ficha numero " + i + " esta en la casilla " + pCas.getNumCasilla() + " que es " + pCas.getTipo());
 		}
 	}
 	
 	public void moverFicha(int pNum, ListaFichas lF) {
 		try{
-			if (lF.hayAlgunaEnCasa()) {
-				if (Tablero.getTablero().buscarCasilla(this) == null) {
-						
-					if (pNum == 5 && !Tablero.getTablero().comprobarCasSalidaLlena(this)) { 
-						this.sacarFicha();
-							
-					} else {
-						throw new NoSePuedeMoverException();
-					}
-						
-				} else if (pNum == 5 && !Tablero.getTablero().comprobarCasSalidaLlena(this)) { 
-					throw new NoSePuedeMoverException();
+			if (lF.hayAlgunaEnCasa() && Tablero.getTablero().buscarCasilla(this) == null && pNum == 5 && !Tablero.getTablero().comprobarCasSalidaLlena(this)) {
+					this.sacarFicha();
 					
-				} else if (!Tablero.getTablero().comprobarCasLlena(pNum, this) || (Tablero.getTablero().comprobarCasSalidaLlena(this) && pNum == 5)){ 
-					
-					Tablero.getTablero().moverFicha(pNum, this);														   							
+			} else if ((lF.hayAlgunaEnCasa() && !Tablero.getTablero().comprobarCasLlena(pNum, this) && ((pNum !=5) || (Tablero.getTablero().comprobarCasSalidaLlena(this) && pNum == 5))) || (lF.estanTodasFuera() && !Tablero.getTablero().comprobarCasLlena(pNum, this))){ 	
+				Tablero.getTablero().moverFicha(pNum, this);														   							
 						
-				} else {
-					throw new NoSePuedeMoverException();
-				}
-				
-			} else if (!Tablero.getTablero().comprobarCasLlena(pNum, this)) {
-					Tablero.getTablero().moverFicha(pNum, this);
-				
 			} else {
 				throw new NoSePuedeMoverException();
 			}
 				
-		}catch (NoSePuedeMoverException e) {
+		} catch (NoSePuedeMoverException e) {
 				
 			System.out.println("Esa ficha no se puede mover; pulsa 1 para elegir otra o pulsa 2 para pasar"); 
 			if (Teclado.getTeclado().pasar() == 2) {

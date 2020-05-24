@@ -28,11 +28,14 @@ public class Teclado {
 				sc = new Scanner(System.in);
 				jug = sc.nextInt();
 				if (jug < 2 || jug > 4) {
-					throw new Exception();
+					throw new ErrorValorException();
 				}
-			} catch (Exception e) {
+			} catch (InputMismatchException e) {
+				System.out.println("Introduce un valor del 2 al 4");
+			} catch (ErrorValorException e) {
 				System.out.println("Introduce un valor del 2 al 4");
 			}
+			
 		} while(jug < 2 || jug > 4);
 		
 		return jug;
@@ -51,7 +54,12 @@ public class Teclado {
 			try {
 				sc = new Scanner(System.in);
 				ficha = sc.nextInt();
+				if (ficha < 1 || ficha > 4) {
+					throw new ErrorValorException();
+				}
 			} catch (InputMismatchException e) {
+				System.out.println("Introduce un valor del 1 al 4");
+			} catch (ErrorValorException e) {
 				System.out.println("Introduce un valor del 1 al 4");
 			}
 		} while(ficha < 1 || ficha > 4);
@@ -67,11 +75,13 @@ public class Teclado {
 				sc = new Scanner(System.in);
 				c = sc.nextInt();
 				if (c != 1 && c != 2) {
-					throw new Exception();
+					throw new ErrorValorException();
 				} else {
 					bien = true;
 				}
-			} catch (Exception e) {
+			} catch (InputMismatchException e) {
+				System.out.println("Introduce 1 si quieres continuar o 2 si quieres pasar");
+			} catch (ErrorValorException e) {
 				System.out.println("Introduce 1 si quieres continuar o 2 si quieres pasar");
 			}
 		} while(!bien);
