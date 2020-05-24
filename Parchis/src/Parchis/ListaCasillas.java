@@ -43,8 +43,8 @@ public class ListaCasillas {
 		return this.listaC.iterator();
 	}
 	
-	public String getTipo(int i) {
-		return this.listaC.get(i).getTipo();
+	public String getTipo(int pNum) {
+		return this.listaC.get(pNum).getTipo();
 	}
 	
 	public void sacarFicha(Ficha pFicha, int pCas) {
